@@ -53,7 +53,7 @@
 			$update[payment_rand]		= $res;
 			$sql = $db->queryUpdate('payment', $update, 'WHERE `payment_rand` = "'.$invoice_id.'" LIMIT 1;');
 			$db->execute($sql);
-			header('location:https://www.zarinpal.com/pg/StartPay/'.$res['Authority']'/ZarinGate');
+			header('location:https://www.zarinpal.com/pg/StartPay/'.$res['Authority'] .'/ZarinGate');
 			exit;
 		}
 		else
