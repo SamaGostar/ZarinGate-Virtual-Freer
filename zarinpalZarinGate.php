@@ -11,7 +11,7 @@
 */
 	//-- اطلاعات کلی پلاگین
 	$pluginData[zarinpalzg][type] = 'payment';
-	$pluginData[zarinpalzg][name] = 'زرین پال - زرین گیت';
+	$pluginData[zarinpalzg][name] = 'بانک سامان';
 	$pluginData[zarinpalzg][uniq] = 'zarinpalzg';
 	$pluginData[zarinpalzg][description] = 'مخصوص پرداخت با دروازه پرداخت <a href="http://zarinpal.com">زرین‌پال‌</a>';
 	$pluginData[zarinpalzg][author][name] = 'Freer';
