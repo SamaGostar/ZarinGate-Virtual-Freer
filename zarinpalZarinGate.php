@@ -35,7 +35,7 @@
 		$callBackUrl 	= $data[callback];
 		
 		$client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-		
+		$client->soap_defencoding = 'UTF-8';
 		$res = $client->call("PaymentRequest", array(
 													array(
 															'MerchantID' 	=> $merchantID,
