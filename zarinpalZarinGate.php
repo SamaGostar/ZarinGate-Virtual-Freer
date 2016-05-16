@@ -11,7 +11,7 @@
 */
 	//-- اطلاعات کلی پلاگین
 	$pluginData[zarinpalzg][type] = 'payment';
-	$pluginData[zarinpalzg][name] = 'بانک سامان';
+	$pluginData[zarinpalzg][name] = 'درگاه زرين گيت زرين پال';
 	$pluginData[zarinpalzg][uniq] = 'zarinpalzg';
 	$pluginData[zarinpalzg][description] = 'مخصوص پرداخت با دروازه پرداخت <a href="http://zarinpal.com">زرین‌پال‌</a>';
 	$pluginData[zarinpalzg][author][name] = 'Freer';
@@ -34,19 +34,18 @@
 		$invoice_id		= $data[invoice_id];
 		$callBackUrl 	= $data[callback];
 		
-		$client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
+		$client = new nusoap_client('https://www.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
 		$client->soap_defencoding = 'UTF-8';
 		$res = $client->call("PaymentRequest", array(
-													array(
-															'MerchantID' 	=> $merchantID,
-															'Amount' 		=> $amount,
-															'Description' 	=> $data[title],
-															'Email' 		=> $Email,
-															'Mobile' 		=> $Mobile,
-															'CallbackURL' 	=> $callBackUrl
-														)
-													)
-		);
+			array(
+				'MerchantID' 	=> $merchantID,
+				'Amount' 		=> $amount,
+				'Description' 	=> $data[title],
+				'Email' 		=> $Email,
+				'Mobile' 		=> $Mobile,
+				'CallbackURL' 	=> $callBackUrl
+			)
+		));
 	
 		if ($res['Status'] == 100)
 		{
@@ -84,13 +83,12 @@
 			$amount		= round($payment[payment_amount]/10);
 			$client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
 			$res = $client->call("PaymentVerification", array(
-															array(
-																	'MerchantID'	 => $merchantID,
-																	'Authority' 	 => $Authority,
-																	'Amount'	 	 => $amount
-																)
-															)
-		);
+				array(
+					'MerchantID'	 => $merchantID,
+					'Authority' 	 => $Authority,
+					'Amount'	 => $amount
+				)
+			));
 			if ($payment[payment_status] == 1)
 			{
 				if ($res['Status'] == 100)//-- موفقیت آمیز
@@ -117,9 +115,9 @@
 		}
 		else
 		{
-				//-- شماره یکتا اشتباه است
-				$output[status]	= 0;
-				$output[message]= 'شماره یکتا اشتباه است.';
+			//-- شماره یکتا اشتباه است
+			$output[status]	= 0;
+			$output[message]= 'شماره یکتا اشتباه است.';
 		}
 		return $output;
 	}
